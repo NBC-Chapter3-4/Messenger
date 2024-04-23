@@ -22,7 +22,9 @@ class MyPageFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private val binding by lazy { FragmentMyPageBinding.inflate(layoutInflater) }
+//    private val binding by lazy { FragmentMyPageBinding.inflate(layoutInflater) }
+    private var _binding: FragmentMyPageBinding? = null //
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +38,8 @@ class MyPageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+//        return binding.root
+        _binding = FragmentMyPageBinding.inflate(inflater, container, false)
         return binding.root
     }
 

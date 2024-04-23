@@ -10,8 +10,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_Title"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        >
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/button"
@@ -21,9 +23,9 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="30dp"
             android:text="Button"
-            app:layout_constraintBottom_toBottomOf="@id/constraint_Title"
-            app:layout_constraintEnd_toEndOf="@id/constraint_Title"
-            app:layout_constraintTop_toTopOf="@id/constraint_Title" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -45,39 +47,10 @@
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="1dp"
-        app:layout_constraintBottom_toTopOf="@id/Tab"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_MyPage">
-
-
     </ScrollView>
-
-
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/Tab"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="675dp"
-        android:orientation="vertical"
-        >
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_Contact"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Contact" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_MyPage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="MyPage" />
-
-    </com.google.android.material.tabs.TabLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
