@@ -1,17 +1,22 @@
 
 package com.nbc.messenger
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import com.nbc.messenger.data.DataSource
 import com.nbc.messenger.databinding.FragmentMyPageBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+
+//private lateinit var callback: OnBackPressedCallback
 
 /**
  * A simple [Fragment] subclass.
@@ -26,12 +31,28 @@ class MyPageFragment : Fragment() {
     private var _binding: FragmentMyPageBinding? = null //
     private val binding get() = _binding!!
 
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//
+//        callback = object : OnBackPressedCallback(true) {
+//            override fun handleOnBackPressed() {
+//                // 뒤로가기 클릭시 동작하는 로직
+//                requireActivity().supportFragmentManager.beginTransaction()
+//                    .setCustomAnimations(0, androidx.appcompat.R.anim.abc_fade_in)
+//                    .remove(this@MyPageFragment)
+//                    .commit()
+//            }
+//        }
+//        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+//    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
     override fun onCreateView(
@@ -47,6 +68,20 @@ class MyPageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 //        binding.tabMyPage.text = param1
+        val my = DataSource.getMyData()
+//        binding.ivMyProfile.setImageResource(my.profileImage)
+        binding.tvName.text = my.name
+        binding.tvUserContent.text = my.nickname
+        binding.tvPhoneContent.text = my.phoneNumber
+        binding.tvEmailContent.text = my.email
+//        binding.tvGroupContent.getList
+//        requireActivity().onBackPressedDispatcher.addCallback(object: OnBackPressedCallback(true) {
+//            override fun handleOnBackPressed() {
+//                // 뒤로 가기 시 실행되는 코드
+//                requireActivity().supportFragmentManager.beginTransaction().remove(this@MyPageFragment).commit()
+//            }
+//        })
+//    }
 
         // [2] FirstFragment -> SecondFragment
         // 2-1.replaec로 fragment2로 교체하며, SecondFragment로 가보자.

@@ -3,6 +3,7 @@ package com.nbc.messenger
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils.replace
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setFragment(MyPageFragment())
+
     }
     private fun setFragment(frag : Fragment) {
         supportFragmentManager.commit {
