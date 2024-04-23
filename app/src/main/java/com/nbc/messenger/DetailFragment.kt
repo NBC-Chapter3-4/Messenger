@@ -11,12 +11,13 @@ import com.nbc.messenger.data.DataSource
 import com.nbc.messenger.data.MemoryStorage
 import com.nbc.messenger.databinding.FragmentDatailBinding
 import com.nbc.messenger.model.My
+import com.nbc.messenger.model.ProfileImage
 import com.nbc.messenger.model.User
 
 private const val USER_MEMORY = "user"
 
 
-class DetailFragment : Fragment() {
+class DetailFragment : Fragment(), View.OnClickListener {
     private var user: User? = null
 
     private val binding by lazy {
@@ -40,24 +41,23 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
-            icDetailNickName.tvDetailGetNick.text = user?.nickname
-            icDetailCall.tvDetailGetCall.text = user?.phoneNumber
-            icDetailEmail.tvDetailGetEmail.text = user?.email
-            tvDetailUserName.text = user?.name
-            tvDetailGetName.text = user?.name
-        }
-//        binding.civDetailProfile.setImageDrawable() =user?.profileImage
+            user?.let {
+                icDetailNickName.tvDetailGetNick.text = it.nickname
+                icDetailCall.tvDetailGetCall.text = it.phoneNumber
+                icDetailEmail.tvDetailGetEmail.text = it.email
+                tvDetailUserName.text = it.name
+                tvDetailGetName.text = it.name
 
-        binding.btnDetailCall.setOnClickListener {
-            val phoneNumber = user?.phoneNumber
-            val call_intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${phoneNumber}"))
-            startActivity(call_intent)
+                when (it.profileImage) {
+                    ProfileImage.DefaultImage -> Unit
+                    is ProfileImage.ResourceImage -> civDetailProfile.setImageResource((it.profileImage).id)
+                }
+            }
         }
-        binding.btnDetailMsg.setOnClickListener {
-            val msgNumber = user?.phoneNumber
-            val msg_intent = Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:${msgNumber}"))
-            startActivity(msg_intent)
-        }
+
+        binding.btnDetailCall.setOnClickListener(this)
+        binding.btnDetailMsg.setOnClickListener(this)
+
     }
 
     companion object {
@@ -70,5 +70,16 @@ class DetailFragment : Fragment() {
             }
     }
 
+
+    override fun onClick(v: View?) {
+        when (view) {
+            binding.btnDetailCall -> {
+                startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:${user?.phoneNumber}")))
+            }
+            binding.btnDetailMsg -> {
+                startActivity(Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:${user?.phoneNumber}")))
+            }
+        }
+    }
 
 }
