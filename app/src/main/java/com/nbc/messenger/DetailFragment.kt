@@ -47,6 +47,7 @@ class DetailFragment : Fragment(), View.OnClickListener {
                 icDetailEmail.tvDetailGetEmail.text = it.email
                 tvDetailUserName.text = it.name
                 tvDetailGetName.text = it.name
+                icDetailGroup.tvDetailGetGroup.text = it.group.toString()
 
                 when (it.profileImage) {
                     ProfileImage.DefaultImage -> Unit
