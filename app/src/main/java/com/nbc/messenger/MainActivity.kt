@@ -1,32 +1,23 @@
 package com.nbc.messenger
 
-import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils.replace
-import androidx.activity.OnBackPressedCallback
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
-import com.nbc.messenger.databinding.ActivityMainBinding
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
 
 class MainActivity : AppCompatActivity() {
 
-    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
-
-        setFragment(MyPageFragment())
-
-    }
-    private fun setFragment(frag : Fragment) {
-        supportFragmentManager.commit {
-            replace(R.id.frameLayout, frag)
-            setReorderingAllowed(true)
-            addToBackStack("")
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_main)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
         }
     }
 }
 
-// 데이터 처리, intent
-// 원리 깊이

@@ -21,9 +21,7 @@ object DataSource {
         nickname = "anna",
         phoneNumber = "1717171717",
         email = "anna@example.com",
-//        profileImage = ProfileImage.DefaultImage,
-        profileImage = ProfileImage.ResourceImage(R.drawable.ic_sample1)
-
+        profileImage = ProfileImage.DefaultImage
     )
 
     fun setMyData(my: My) {
