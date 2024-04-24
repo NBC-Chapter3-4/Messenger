@@ -78,8 +78,8 @@ class MyPageFragment : Fragment() {
             is ProfileImage.ResourceImage -> binding.ivMyProfile.setImageResource(my.profileImage.id)
             // id값으로 custom(사용자)
         }
-        binding.tvName.text = my.name
-        binding.tvUserContent.text = my.nickname
+        binding.tvName.text = my.nickname
+        binding.tvUserContent.text = my.name
         binding.tvPhoneContent.text = my.phoneNumber
         binding.tvEmailContent.text = my.email
 
