@@ -29,5 +29,4 @@ object DataSource {
     }
 
     fun getMyData(): My = my
-
 }

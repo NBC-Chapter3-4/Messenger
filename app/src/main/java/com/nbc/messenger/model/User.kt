@@ -1,5 +1,9 @@
 package com.nbc.messenger.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class User(
     val id: String,
     val name: String,
@@ -10,4 +14,4 @@ data class User(
     val profileImage: ProfileImage,
     val isLike: Boolean,
     val isChecked: Boolean
-)
+): Parcelable
