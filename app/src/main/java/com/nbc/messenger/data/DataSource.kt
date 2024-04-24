@@ -1,5 +1,6 @@
 package com.nbc.messenger.data
 
+import com.nbc.messenger.R
 import com.nbc.messenger.model.My
 import com.nbc.messenger.model.ProfileImage
 import com.nbc.messenger.model.User
@@ -20,7 +21,7 @@ object DataSource {
         nickname = "anna",
         phoneNumber = "1717171717",
         email = "anna@example.com",
-        profileImage = ProfileImage.DefaultImage,
+        profileImage = ProfileImage.DefaultImage
     )
 
     fun setMyData(my: My) {
@@ -28,5 +29,4 @@ object DataSource {
     }
 
     fun getMyData(): My = my
-
 }

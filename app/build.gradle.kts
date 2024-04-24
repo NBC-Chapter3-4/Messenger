@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -33,12 +34,17 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
+
 
 dependencies {
 
     // core
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.fragment.ktx)
 
     // UI
     implementation(libs.androidx.appcompat)
