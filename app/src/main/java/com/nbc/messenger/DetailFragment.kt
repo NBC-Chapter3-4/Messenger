@@ -72,7 +72,7 @@ class DetailFragment : Fragment(), View.OnClickListener {
     }
 
 
-    override fun onClick(v: View?) {
+    override fun onClick(view: View?) {
         when (view) {
             binding.btnDetailCall -> {
                 startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:${user?.phoneNumber}")))
@@ -82,5 +82,4 @@ class DetailFragment : Fragment(), View.OnClickListener {
             }
         }
     }
-
 }
