@@ -1,4 +1,4 @@
-package com.nbc.messenger
+package com.nbc.messenger.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
-import com.nbc.messenger.data.DataSource
+import com.nbc.messenger.R
 import com.nbc.messenger.databinding.FragmentViewPagerBinding
-import com.nbc.messenger.model.My
 
 class ViewPagerFragment : Fragment() {
 

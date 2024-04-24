@@ -1,7 +1,8 @@
-package com.nbc.messenger
+package com.nbc.messenger.ui.main
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.nbc.messenger.ui.my.MyPageFragment
 
 class ViewPagerAdapter(fa: Fragment) : FragmentStateAdapter(fa) {
     private val fragments = listOf(ContactListFragment(), MyPageFragment())

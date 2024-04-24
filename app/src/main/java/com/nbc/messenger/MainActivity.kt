@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.nbc.messenger.databinding.ActivityMainBinding
+import com.nbc.messenger.ui.main.ViewPagerFragment
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,21 +1,17 @@
-package com.nbc.messenger
+package com.nbc.messenger.ui.detail
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.nbc.messenger.data.DataSource
-import com.nbc.messenger.data.MemoryStorage
+import androidx.fragment.app.Fragment
 import com.nbc.messenger.databinding.FragmentDatailBinding
-import com.nbc.messenger.model.My
 import com.nbc.messenger.model.ProfileImage
 import com.nbc.messenger.model.User
 
 private const val USER_MEMORY = "user"
-
 
 class DetailFragment : Fragment(), View.OnClickListener {
     private var user: User? = null

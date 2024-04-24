@@ -1,4 +1,4 @@
-package com.nbc.messenger
+package com.nbc.messenger.ui.main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -10,9 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.nbc.messenger.R
 import com.nbc.messenger.data.DataSource
 import com.nbc.messenger.data.MemoryStorage
 import com.nbc.messenger.databinding.FragmentContactListBinding
+import com.nbc.messenger.ui.detail.DetailFragment
 
 class ContactListFragment : Fragment() {
 

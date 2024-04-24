@@ -1,4 +1,4 @@
-package com.nbc.messenger
+package com.nbc.messenger.ui.main
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.nbc.messenger.R
 import com.nbc.messenger.databinding.ItemRecyclerviewBinding
 import com.nbc.messenger.databinding.ItemRecyclerviewReverseBinding
 import com.nbc.messenger.databinding.LikedUserItemBinding
@@ -76,7 +77,7 @@ class MyAdapter(
         }
     }
 
-    override fun onBindViewHolder(holder: MyAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = item[position]
         when (holder) {
             is ViewHolder.ListViewHolder -> holder.bind(item)
