@@ -1,6 +1,5 @@
 package com.nbc.messenger.data
 
-import com.nbc.messenger.R
 import com.nbc.messenger.model.My
 import com.nbc.messenger.model.ProfileImage
 import com.nbc.messenger.model.User

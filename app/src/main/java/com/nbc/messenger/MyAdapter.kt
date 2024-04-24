@@ -1,8 +1,6 @@
 package com.nbc.messenger
 
-import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +11,6 @@ import com.nbc.messenger.databinding.ItemRecyclerviewReverseBinding
 import com.nbc.messenger.databinding.LikedUserItemBinding
 import com.nbc.messenger.model.ProfileImage
 import com.nbc.messenger.model.User
-
 
 class MyAdapter(
     private val item: List<User>,
@@ -32,18 +29,18 @@ class MyAdapter(
     interface onItemClickListener {
         fun onItemClick(position: Int)
     }
+
     private lateinit var itemClickListener: onItemClickListener
 
     fun setItemClickListener(listener: onItemClickListener) {
         itemClickListener = listener
     }
 
-    interface onItemLongClick{
+    interface onItemLongClick {
         fun onLongClick(view: View, position: Int): Boolean
     }
-    var itemLongClick: onItemLongClick ?= null
 
-
+    var itemLongClick: onItemLongClick? = null
 
 
     override fun getItemViewType(position: Int): Int {
@@ -91,7 +88,7 @@ class MyAdapter(
         }
         //추가
         holder.itemView.setOnLongClickListener {
-            itemLongClick?.onLongClick(it, position)?: false
+            itemLongClick?.onLongClick(it, position) ?: false
         }
     }
 
@@ -99,7 +96,7 @@ class MyAdapter(
         return item.size
     }
 
-    fun getItem(position:Int):User{
+    fun getItem(position: Int): User {
         return item[position]
     }
 
@@ -108,9 +105,8 @@ class MyAdapter(
 
         class ListViewHolder(
             private val binding: ItemRecyclerviewBinding,
-            private val likeClickListener: (position: Int) -> Unit
+            private val likeClickListener: (position: Int) -> Unit,
         ) : ViewHolder(binding.root) {
-
 
 
             fun bind(item: User) {
@@ -137,7 +133,7 @@ class MyAdapter(
 
         class ReverseListViewHolder(
             private val binding: ItemRecyclerviewReverseBinding,
-            private val likeClickListener: (position: Int) -> Unit
+            private val likeClickListener: (position: Int) -> Unit,
         ) :
             ViewHolder(binding.root) {
             fun bind(item: User) {
@@ -173,7 +169,7 @@ class MyAdapter(
                 }
                 binding.userNameTextView.text = item.name
 
-                when(item.isChecked){
+                when (item.isChecked) {
                     true -> binding.redNum1.isVisible = true
                     false -> binding.redNum1.isVisible = false
                 }
