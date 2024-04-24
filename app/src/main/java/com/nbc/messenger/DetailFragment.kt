@@ -20,9 +20,8 @@ private const val USER_MEMORY = "user"
 class DetailFragment : Fragment(), View.OnClickListener {
     private var user: User? = null
 
-    private val binding by lazy {
-        FragmentDatailBinding.inflate(layoutInflater)
-    }
+    private var _binding: FragmentDatailBinding? = null
+    private val binding get() = _binding!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +34,7 @@ class DetailFragment : Fragment(), View.OnClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
+        _binding = FragmentDatailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -81,5 +81,10 @@ class DetailFragment : Fragment(), View.OnClickListener {
                 startActivity(Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:${user?.phoneNumber}")))
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
