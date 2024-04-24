@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nbc.messenger.R
 import com.nbc.messenger.data.DataSource
-import com.nbc.messenger.data.MemoryStorage
 import com.nbc.messenger.databinding.FragmentContactListBinding
+import com.nbc.messenger.ui.add_contact.AddContactDialog
 import com.nbc.messenger.ui.detail.DetailFragment
 
 class ContactListFragment : Fragment() {
@@ -54,13 +54,13 @@ class ContactListFragment : Fragment() {
             val recyclerView = binding.recyclerView
             recyclerView.addItemDecoration(decoration)
             recyclerView.layoutManager = LinearLayoutManager(context)
-            val adapter = MyAdapter(MemoryStorage.users, isGrid) { position ->
+            val adapter = MyAdapter(isGrid) { position ->
                 // 클릭 리스너 처리
-                val user = MemoryStorage.users[position]
+                val user = DataSource.getUsers()[position]
                 user.isLike = !user.isLike // isLike 토글
                 Toast.makeText(
                     context,
-                    "${MemoryStorage.users[position].isLike} ss",
+                    "${DataSource.getUsers()[position].isLike} ss",
                     Toast.LENGTH_SHORT
                 ).show()
 
@@ -70,7 +70,7 @@ class ContactListFragment : Fragment() {
             adapter.setItemClickListener(
                 object : MyAdapter.onItemClickListener {
                     override fun onItemClick(position: Int) {
-                        val user = MemoryStorage.users[position]
+                        val user = DataSource.getUsers()[position]
                         val detailFragment = DetailFragment.newInstance(user)  // 매개변수 추가
                         val transaction =
                             requireActivity().supportFragmentManager.beginTransaction()
@@ -82,11 +82,20 @@ class ContactListFragment : Fragment() {
             )
 
             recyclerView.adapter = adapter
+
+            binding.fabMain.setOnClickListener {
+                AddContactDialog {
+                    DataSource.addUser(it)
+                    adapter.notifyItemChanged(DataSource.getUsers().lastIndex)
+                }
+                    .show(childFragmentManager, AddContactDialog.TAG)
+            }
+
         } else {
             val likedList = DataSource.getUsers().filter { it.isLike }
             likedList.let { users ->
                 val recyclerView = binding.recyclerView
-                val adapter = MyAdapter(users, isGrid) { position ->
+                val adapter = MyAdapter(isGrid) { position ->
                     val user = DataSource.getUsers()[position]
 
                     user.isLike = !user.isLike // isLike 토글
@@ -99,7 +108,7 @@ class ContactListFragment : Fragment() {
                 adapter.setItemClickListener(
                     object : MyAdapter.onItemClickListener {
                         override fun onItemClick(position: Int) {
-                            val user = MemoryStorage.users[position]
+                            val user = DataSource.getUsers()[position]
                             val detailFragment = DetailFragment.newInstance(user)  // 매개변수 추가
                             val transaction =
                                 requireActivity().supportFragmentManager.beginTransaction()
@@ -110,21 +119,25 @@ class ContactListFragment : Fragment() {
                     }
                 )
 
+                binding.fabMain.setOnClickListener {
+                    AddContactDialog {
+                        DataSource.addUser(it)
+                        adapter.notifyItemChanged(DataSource.getUsers().lastIndex)
+                    }
+                        .show(childFragmentManager, AddContactDialog.TAG)
+                }
+
                 // 다이얼로그 클릭리스너
-                //                binding.fabMain.setOnClickListener {
-                //                    AddContactDialog().show(childFragmentManager, AddContactdialog.TAG)
-                //                }
 
-                //                adapter.itemLongClick = object : MyAdapter.onItemLongClick {
-                //                    override fun onLongClick(view: View, position: Int): Boolean {
-                //                        val longClickedItem = adapter.getItem(position)
-                //
-                //                        setDialog(requireContext(), longClickedItem)
-                //                        return true
-                //                    }
-                //
-                //                }
-
+//                adapter.itemLongClick = object : MyAdapter.onItemLongClick {
+//                    override fun onLongClick(view: View, position: Int): Boolean {
+//                        val longClickedItem = adapter.getItem(position)
+//
+//                        setDialog(requireContext(), longClickedItem)
+//                        return true
+//                    }
+//
+//                }
             }
         }
     }

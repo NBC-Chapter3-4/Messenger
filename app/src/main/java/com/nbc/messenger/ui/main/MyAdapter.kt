@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.nbc.messenger.R
+import com.nbc.messenger.data.DataSource
 import com.nbc.messenger.databinding.ItemRecyclerviewBinding
 import com.nbc.messenger.databinding.ItemRecyclerviewReverseBinding
 import com.nbc.messenger.databinding.LikedUserItemBinding
@@ -14,10 +15,12 @@ import com.nbc.messenger.model.ProfileImage
 import com.nbc.messenger.model.User
 
 class MyAdapter(
-    private val item: List<User>,
     private val isGrid: Boolean,
     private val likeClickListener: (position: Int) -> Unit,
 ) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+
+    private var items = DataSource.getUsers()
+
     private val TAG = "Like"
 
 
@@ -78,7 +81,7 @@ class MyAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = item[position]
+        val item = items[position]
         when (holder) {
             is ViewHolder.ListViewHolder -> holder.bind(item)
             is ViewHolder.ReverseListViewHolder -> holder.bind(item)
@@ -94,11 +97,11 @@ class MyAdapter(
     }
 
     override fun getItemCount(): Int {
-        return item.size
+        return items.size
     }
 
     fun getItem(position: Int): User {
-        return item[position]
+        return items[position]
     }
 
     sealed class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
