@@ -6,10 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.nbc.messenger.databinding.GridItemRecyclerviewBinding
 import com.nbc.messenger.databinding.ItemRecyclerviewBinding
 import com.nbc.messenger.databinding.ItemRecyclerviewReverseBinding
+import com.nbc.messenger.databinding.LikedUserItemBinding
 import com.nbc.messenger.model.ProfileImage
 import com.nbc.messenger.model.User
 
@@ -17,8 +18,10 @@ import com.nbc.messenger.model.User
 class MyAdapter(
     private val item: List<User>,
     private val isGrid: Boolean,
-    private val likeClickListener: (position: Int) ->Unit,
+    private val likeClickListener: (position: Int) -> Unit,
 ) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+    private val TAG = "Like"
+
 
     companion object {
         const val TYPE_GRID = 1
@@ -26,17 +29,21 @@ class MyAdapter(
         const val ODD = 3
     }
 
-    interface onItemClickListener{
+    interface onItemClickListener {
         fun onItemClick(position: Int)
     }
     private lateinit var itemClickListener: onItemClickListener
-    fun setItemClickListener(listener: onItemClickListener){
+
+    fun setItemClickListener(listener: onItemClickListener) {
         itemClickListener = listener
     }
 
-    interface onTypeChangeClickListener{
-        fun onTypeChangeClick(position: Int)
+    interface onItemLongClick{
+        fun onLongClick(view: View, position: Int): Boolean
     }
+    var itemLongClick: onItemLongClick ?= null
+
+
 
 
     override fun getItemViewType(position: Int): Int {
@@ -54,7 +61,7 @@ class MyAdapter(
 
         return when (viewType) {
             TYPE_GRID -> {
-                val binding = GridItemRecyclerviewBinding.inflate(layoutInflater, parent, false)
+                val binding = LikedUserItemBinding.inflate(layoutInflater, parent, false)
                 ViewHolder.GridViewHolder(binding)
             }
 
@@ -82,24 +89,37 @@ class MyAdapter(
         holder.itemView.setOnClickListener {
             itemClickListener.onItemClick(position)
         }
+        //추가
+        holder.itemView.setOnLongClickListener {
+            itemLongClick?.onLongClick(it, position)?: false
+        }
     }
 
     override fun getItemCount(): Int {
         return item.size
     }
 
+    fun getItem(position:Int):User{
+        return item[position]
+    }
+
     sealed class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
 
         class ListViewHolder(
             private val binding: ItemRecyclerviewBinding,
             private val likeClickListener: (position: Int) -> Unit
         ) : ViewHolder(binding.root) {
+
+
+
             fun bind(item: User) {
 
                 binding.ivLike.setOnClickListener {
                     likeClickListener(position)
                 }
                 Log.d("isLike", "${position},${item.isLike}")
+
 
                 when (item.profileImage) {
                     is ProfileImage.ResourceImage -> {
@@ -111,13 +131,14 @@ class MyAdapter(
                     }
                 }
                 binding.tvUserName.text = item.name
-                binding.ivLike.setImageResource(if (item.isLike) R.drawable.heart2 else R.drawable.heart)
+                binding.ivLike.setImageResource(if (item.isLike) R.drawable.heart2 else R.drawable.heart01)
             }
         }
 
         class ReverseListViewHolder(
             private val binding: ItemRecyclerviewReverseBinding,
-            private val likeClickListener: (position: Int) -> Unit) :
+            private val likeClickListener: (position: Int) -> Unit
+        ) :
             ViewHolder(binding.root) {
             fun bind(item: User) {
                 binding.ivLike.setOnClickListener {
@@ -128,18 +149,35 @@ class MyAdapter(
                     is ProfileImage.ResourceImage -> {
                         binding.cvProfileImage.setImageResource(item.profileImage.id)
                     }
+
                     is ProfileImage.DefaultImage -> {
                         binding.cvProfileImage.setImageResource(R.drawable.ic_profile_default)
                     }
                 }
                 binding.tvUserName.text = item.name
-                binding.ivLike.setImageResource(if (item.isLike) R.drawable.heart2 else R.drawable.heart)
+                binding.ivLike.setImageResource(if (item.isLike) R.drawable.heart2 else R.drawable.heart01)
             }
         }
 
-        class GridViewHolder(private val binding: GridItemRecyclerviewBinding) :
+        class GridViewHolder(private val binding: LikedUserItemBinding) :
             ViewHolder(binding.root) {
             fun bind(item: User) {
+                when (item.profileImage) {
+                    is ProfileImage.ResourceImage -> {
+                        binding.profileImageView.setImageResource(item.profileImage.id)
+                    }
+
+                    is ProfileImage.DefaultImage -> {
+                        binding.profileImageView.setImageResource(R.drawable.ic_profile_default)
+                    }
+                }
+                binding.userNameTextView.text = item.name
+
+                when(item.isChecked){
+                    true -> binding.redNum1.isVisible = true
+                    false -> binding.redNum1.isVisible = false
+                }
+
             }
         }
     }

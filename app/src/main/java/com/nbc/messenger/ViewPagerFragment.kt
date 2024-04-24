@@ -45,9 +45,9 @@ class ViewPagerFragment : Fragment() {
         TabLayoutMediator(binding.tapMain, binding.viewPager2) { tab, position ->
             when(position) {
                 0 -> {
-                    tab.setIcon(R.drawable.people2)
-                    tab.text = "연락처" }
-                1 -> tab.setIcon(R.drawable.heart2)
+                    tab.setIcon(R.drawable.people)
+                    }
+                1 -> tab.setIcon(R.drawable.mypage)
             }
         }.attach()
 

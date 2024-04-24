@@ -18,9 +18,15 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tap_main"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:tabIconTint="@color/select"
+        app:tabTextColor="@color/select"
+        app:tabIndicatorHeight="0dp"
+        app:tabIndicatorFullWidth="true"
+        >
+
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
