@@ -25,7 +25,7 @@ object DataSource {
         nickname = "anna",
         phoneNumber = "1717171717",
         email = "anna@example.com",
-        profileImage = ProfileImage.DefaultImage,
+        profileImage = ProfileImage.DefaultImage
     )
 
     fun setMyData(my: My) {
@@ -33,5 +33,4 @@ object DataSource {
     }
 
     fun getMyData(): My = my
-
 }

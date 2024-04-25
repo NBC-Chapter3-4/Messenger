@@ -34,11 +34,8 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
-    }
-    defaultConfig {
-        vectorDrawables.useSupportLibrary = true // 벡터 지원 활성화
     }
 }
 
@@ -46,6 +43,7 @@ dependencies {
 
     // core
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.fragment.ktx)
 
     // UI
     implementation(libs.androidx.appcompat)

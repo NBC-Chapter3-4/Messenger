@@ -12,25 +12,4 @@
         android:layout_height="match_parent"/>
 
 
-    <TextView
-        android:id="@+id/tvFrag2Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="프래그먼트 2"
-        android:textAllCaps="false"
-        android:textSize="40sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <Button
-        android:id="@+id/btnSendActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="158dp"
-        tools:layout_editor_absoluteY="444dp"
-        tools:ignore="MissingConstraints" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
