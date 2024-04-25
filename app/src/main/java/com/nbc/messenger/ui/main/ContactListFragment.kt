@@ -64,7 +64,7 @@ class ContactListFragment : Fragment() {
             setUpRecyclerView()
         }
 
-        binding.fabMain.setOnClickListener {clickFAB() }
+        binding.fabMain.setOnClickListener { clickFAB() }
 
     }
 
@@ -95,9 +95,10 @@ class ContactListFragment : Fragment() {
                         context?.createNotificationChannel(user, number)
                         adapter.updateItems { last ->
                             val index = last.indexOf(user)
-                            DataSource.updateIsChecked(last[index],false)
-                            DataSource.getUsers().filter { it.isLike }.also {
-                                Log.d("filter","$it")
+                            DataSource.updateIsChecked(last[index], false)
+
+                            last.apply {
+                                get(index).isChecked = false
                             }
                         }
                     }
@@ -108,7 +109,8 @@ class ContactListFragment : Fragment() {
         if (!isGrid) {
             val decoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
             binding.recyclerView.addItemDecoration(decoration)
-            binding.recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            binding.recyclerView.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter.changeLayout(MyRecyclerViewLayout.LINEAR)
             adapter.updateItems(DataSource.getUsers())
         } else {
@@ -123,20 +125,21 @@ class ContactListFragment : Fragment() {
         }
     }
 
-    fun showNumberSelectionDialog(context: Context, onNumberSelected: (Int) -> Unit) {
-        val numbers = arrayOf("1", "2", "3")
+    companion object {
+        fun showNumberSelectionDialog(context: Context, onNumberSelected: (Int) -> Unit) {
+            val numbers = arrayOf("1", "2", "3")
 
-        AlertDialog.Builder(context)
-            .setTitle("몇 분 뒤에 문자를 보낼까요?")
-            .setItems(numbers) { _, which ->
-                val selectedNumber = numbers[which].toInt()
-                onNumberSelected(selectedNumber)
-            }
-            .show()
+            AlertDialog.Builder(context)
+                .setTitle("몇 분 뒤에 문자를 보낼까요?")
+                .setItems(numbers) { _, which ->
+                    val selectedNumber = numbers[which].toInt()
+                    onNumberSelected(selectedNumber)
+                }
+                .show()
+
+        }
 
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()
