@@ -11,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat
 import com.nbc.messenger.data.DataSource
 import com.nbc.messenger.databinding.ActivityMainBinding
 import com.nbc.messenger.model.User
-import com.nbc.messenger.ui.detail.DetailFragment
 import com.nbc.messenger.ui.main.ViewPagerFragment
 
 class MainActivity : AppCompatActivity() {
@@ -36,12 +35,7 @@ class MainActivity : AppCompatActivity() {
         intent.getCustomParcelableExtra("item", User::class.java)
             ?.let { DataSource.updateIsChecked(it.copy(isChecked = false), true) }
 
-        Log.d("TEST", intent.getCustomParcelableExtra("item", User::class.java).toString())
-        Log.d("TEST2", DataSource.getUsers().toString())
-
     }
-
-
 }
 
 
@@ -54,5 +48,3 @@ private fun <T> Intent.getCustomParcelableExtra(
     } else {
         getParcelableExtra(name)
     }
-
-
