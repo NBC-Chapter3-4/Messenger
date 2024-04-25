@@ -29,7 +29,7 @@ class ListViewHolder(
             }
         }
         binding.tvUserName.text = item.name
-        binding.ivLike.setImageResource(if (item.isLike) R.drawable.heart2 else R.drawable.heart)
+        binding.ivLike.setImageResource(if (item.isLike) R.drawable.heart2 else R.drawable.heart01)
         Log.d("item:", "$item")
     }
 }
