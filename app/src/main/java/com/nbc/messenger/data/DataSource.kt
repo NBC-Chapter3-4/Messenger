@@ -17,6 +17,10 @@ object DataSource {
         return users.find { it.name==_name }
     }
 
+    fun updateIsChecked(_user:User, _changeTo: Boolean){
+        users[users.indexOf(_user)].isChecked = _changeTo
+    }
+
     fun getUsers(): List<User> = users
 
     private var my: My = My(

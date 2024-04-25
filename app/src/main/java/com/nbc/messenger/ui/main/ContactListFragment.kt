@@ -3,6 +3,7 @@ package com.nbc.messenger.ui.main
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -94,11 +95,11 @@ class ContactListFragment : Fragment() {
                         context?.createNotificationChannel(user, number)
                         adapter.updateItems { last ->
                             val index = last.indexOf(user)
-                            last.apply {
-                                get(index).isChecked = false
+                            DataSource.updateIsChecked(last[index],false)
+                            DataSource.getUsers().filter { it.isLike }.also {
+                                Log.d("filter","$it")
                             }
                         }
-                        adapter.notifyDataSetChanged()
                     }
                 }
             }
@@ -134,6 +135,8 @@ class ContactListFragment : Fragment() {
             .show()
 
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
