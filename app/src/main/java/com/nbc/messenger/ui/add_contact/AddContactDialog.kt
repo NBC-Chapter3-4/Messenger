@@ -29,7 +29,9 @@ private data class Contact(
     }
 }
 
-class AddContactDialog : DialogFragment() {
+class AddContactDialog(
+    private val onSuccessListener: (User) -> Unit
+) : DialogFragment() {
 
     private var _binding: FragmentAddContactDialogBinding? = null
     private val binding get() = _binding!!
@@ -59,7 +61,7 @@ class AddContactDialog : DialogFragment() {
 
     private fun clickSaveButton() {
         if (binding.btnSave.isEnabled) {
-            DataSource.addUser(contact.asExternalModel())
+            onSuccessListener(contact.asExternalModel())
             dialog?.dismiss()
         }
     }
@@ -77,12 +79,15 @@ class AddContactDialog : DialogFragment() {
                         if (editable == null) return@addTextChangedListener
 
                         updateContactState(editText.id, editable.toString())
-
-                        if (contact.isValid()) {
-                            btnSave.isEnabled = true
-                        }
+                        checkSuccess()
                     }
                 }
+        }
+    }
+
+    private fun checkSuccess() {
+        if (contact.isValid()) {
+            binding.btnSave.isEnabled = true
         }
     }
 

@@ -12,6 +12,6 @@ data class User(
     val email: String,
     val group: List<String>,
     val profileImage: ProfileImage,
-    val isLike: Boolean,
-    val isChecked: Boolean
+    var isLike: Boolean,
+    var isChecked: Boolean
 ): Parcelable
