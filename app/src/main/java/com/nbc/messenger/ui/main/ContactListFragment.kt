@@ -1,14 +1,11 @@
 package com.nbc.messenger.ui.main
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,9 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.nbc.messenger.R
 import com.nbc.messenger.createNotificationChannel
 import com.nbc.messenger.data.DataSource
-import com.nbc.messenger.data.MemoryStorage
 import com.nbc.messenger.databinding.FragmentContactListBinding
 import com.nbc.messenger.model.User
+import com.nbc.messenger.showNumberSelectionDialog
 import com.nbc.messenger.ui.add_contact.AddContactDialog
 import com.nbc.messenger.ui.detail.DetailFragment
 
@@ -110,7 +107,7 @@ class ContactListFragment : Fragment() {
 
             binding.recyclerView.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                
+
             adapter.changeLayout(MyRecyclerViewLayout.LINEAR)
             adapter.updateItems(DataSource.getUsers())
         } else {
@@ -123,22 +120,6 @@ class ContactListFragment : Fragment() {
                 adapter.updateItems(users)
             }
         }
-    }
-
-    companion object {
-        fun showNumberSelectionDialog(context: Context, onNumberSelected: (Int) -> Unit) {
-            val numbers = arrayOf("1", "2", "3")
-
-            AlertDialog.Builder(context)
-                .setTitle("몇 분 뒤에 문자를 보낼까요?")
-                .setItems(numbers) { _, which ->
-                    val selectedNumber = numbers[which].toInt()
-                    onNumberSelected(selectedNumber)
-                }
-                .show()
-
-        }
-
     }
 
     override fun onDestroyView() {
