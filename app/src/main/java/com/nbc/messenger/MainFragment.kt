@@ -36,45 +36,18 @@ import com.nbc.messenger.data.MemoryStorage
 import com.nbc.messenger.databinding.FragmentMainBinding
 //import com.nbc.messenger.databinding.FragmentMainBinding
 import com.nbc.messenger.model.User
+import com.nbc.messenger.ui.detail.DetailFragment
 import java.util.Calendar
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 val channelId = "one-channel"
 val channelName = "My Channel One"
 private val NOTIFICATION_ID = 1000
 const val ACTION_NOTIFICATION_CLICKED = "action_notification_clicked"
 
-//var intentItem: Intent? = null
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MainFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MainFragment : Fragment() {
 
-
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
     private var isGrid = false
     private var isLike = false
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-//        if (intentItem != null) {
-//            handleNotificationClick(intentItem)
-//            Toast.makeText(context,"@@@@",Toast.LENGTH_LONG).show()
-//        }
-    }
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -371,24 +344,6 @@ class MainFragment : Fragment() {
 
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MainFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MainFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-
         const val ACTION_NOTIFICATION_CLICKED = "your.package.name.ACTION_NOTIFICATION_CLICKED"
     }
 
