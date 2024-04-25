@@ -1,25 +1,18 @@
 package com.nbc.messenger.ui.detail
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.ContactsContract.Data
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import com.nbc.messenger.MainActivity
 import com.nbc.messenger.createNotificationChannel
 import com.nbc.messenger.data.DataSource
 import com.nbc.messenger.databinding.FragmentDatailBinding
 import com.nbc.messenger.model.ProfileImage
 import com.nbc.messenger.model.User
 import com.nbc.messenger.ui.main.ContactListFragment
-import com.nbc.messenger.ui.main.ViewPagerFragment
 
 private const val USER_MEMORY = "user"
 
