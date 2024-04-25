@@ -3,6 +3,7 @@ package com.nbc.messenger.data
 import com.nbc.messenger.model.My
 import com.nbc.messenger.model.ProfileImage
 import com.nbc.messenger.model.User
+import kotlinx.parcelize.Parcelize
 
 object DataSource {
 
@@ -10,6 +11,10 @@ object DataSource {
 
     fun addUser(user: User) {
         users.add(user)
+    }
+
+    fun searchByName(_name: String): User? {
+        return users.find { it.name==_name }
     }
 
     fun getUsers(): List<User> = users
