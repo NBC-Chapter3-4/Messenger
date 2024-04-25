@@ -50,8 +50,8 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/constView"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constView">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

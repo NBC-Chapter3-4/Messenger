@@ -35,9 +35,6 @@ class MainActivity : AppCompatActivity() {
         intent.getCustomParcelableExtra("item", User::class.java)
             ?.let { DataSource.updateIsChecked(it.copy(isChecked = false), true) }
 
-        Log.d("TEST", intent.getCustomParcelableExtra("item", User::class.java).toString())
-        Log.d("TEST2", DataSource.getUsers().toString())
-
     }
 }
 
