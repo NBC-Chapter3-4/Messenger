@@ -65,7 +65,6 @@ class ContactListFragment : Fragment() {
         }
 
         binding.fabMain.setOnClickListener { clickFAB() }
-
     }
 
     private fun clickFAB() {
@@ -96,7 +95,6 @@ class ContactListFragment : Fragment() {
                         adapter.updateItems { last ->
                             val index = last.indexOf(user)
                             DataSource.updateIsChecked(last[index], false)
-
                             last.apply {
                                 get(index).isChecked = false
                             }
@@ -109,8 +107,10 @@ class ContactListFragment : Fragment() {
         if (!isGrid) {
             val decoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
             binding.recyclerView.addItemDecoration(decoration)
+
             binding.recyclerView.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                
             adapter.changeLayout(MyRecyclerViewLayout.LINEAR)
             adapter.updateItems(DataSource.getUsers())
         } else {
