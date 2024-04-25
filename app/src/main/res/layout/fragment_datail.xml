@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailFragment">
+    tools:context=".ui.detail.DetailFragment">
 
     <Button
         android:id="@+id/btn_detail_back"
@@ -59,8 +59,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_detail_call"
         app:layout_constraintTop_toBottomOf="@id/tv_detail_userName" />
-
-
 
 
     <TextView
@@ -193,14 +191,22 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ic_detail_nickName" />
 
-            <include
-                android:id="@+id/ic_detail_notification"
-                layout="@layout/notification"
+            <LinearLayout
+                android:id="@+id/ll_detail_notification"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ic_detail_group" />
+                app:layout_constraintTop_toBottomOf="@+id/ic_detail_group">
+
+                <include
+                    android:id="@+id/ic_detail_notification"
+                    layout="@layout/notification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ic_detail_group" />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

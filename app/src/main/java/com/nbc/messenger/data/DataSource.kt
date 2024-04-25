@@ -1,9 +1,9 @@
 package com.nbc.messenger.data
 
-import com.nbc.messenger.R
 import com.nbc.messenger.model.My
 import com.nbc.messenger.model.ProfileImage
 import com.nbc.messenger.model.User
+import kotlinx.parcelize.Parcelize
 
 object DataSource {
 
@@ -11,6 +11,14 @@ object DataSource {
 
     fun addUser(user: User) {
         users.add(user)
+    }
+
+    fun searchByName(_name: String): User? {
+        return users.find { it.name==_name }
+    }
+
+    fun updateIsChecked(_user:User, _changeTo: Boolean){
+        users[users.indexOf(_user)].isChecked = _changeTo
     }
 
     fun getUsers(): List<User> = users

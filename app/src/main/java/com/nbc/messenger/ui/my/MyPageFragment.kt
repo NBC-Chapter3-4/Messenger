@@ -1,5 +1,5 @@
-package com.nbc.messenger
 
+package com.nbc.messenger.ui.my
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,41 +8,22 @@ import android.view.Window
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.nbc.messenger.R
 import com.nbc.messenger.data.DataSource
 import com.nbc.messenger.databinding.FragmentMyPageBinding
 import com.nbc.messenger.model.ProfileImage
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MyPageFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MyPageFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     // 1. binding : 둘 중 뭐가 다르고 좋은거지 모르겠다.
 //    private val binding by lazy { FragmentMyPageBinding.inflate(layoutInflater) }
     private var _binding: FragmentMyPageBinding? = null //
     private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         _binding = FragmentMyPageBinding.inflate(inflater, container, false)
         return binding.root
@@ -70,11 +51,11 @@ class MyPageFragment : Fragment() {
 
 //            val builder = AlertDialog.Builder(this)
             // Fragment에서는 requireActivity()를 사용하여 Activity의 Context를 가져옴
-//            val builder = AlertDialog.Builder(requireActivity())
+
+//            val builder = AlertDialog.Builder(requireActivity()), 이거를 밑에 alertDialog에 넣음.
 
             // dialogFragment로 구현한 것이 아니라 이 부분이 꼭 필요하다.
             val dialogView = layoutInflater.inflate(R.layout.my_page_dialog, null)
-//            builder.setView(v1)
 
             val alertDialog = AlertDialog.Builder(requireActivity())
                 .setView(dialogView)
@@ -121,30 +102,6 @@ class MyPageFragment : Fragment() {
         // 2-2. 두 방법 모두 아래 코드로 구현 가능하다. [끝]
 //        binding.tvFrag2Text.text = param1
     }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MyPageFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-
-        fun newInstance(param1: String) =
-        // [1] Activity -> FirstFragment
-        // [2] FirstFragment -> SecondFragment
-            // 두 방법 모두 아래 코드로 구현 가능하다.
-            MyPageFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                }
-            }
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         // Binding 객체 해제

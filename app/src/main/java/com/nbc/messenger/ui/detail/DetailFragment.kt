@@ -1,28 +1,26 @@
-package com.nbc.messenger
+package com.nbc.messenger.ui.detail
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.nbc.messenger.createNotificationChannel
 import com.nbc.messenger.data.DataSource
-import com.nbc.messenger.data.MemoryStorage
 import com.nbc.messenger.databinding.FragmentDatailBinding
-import com.nbc.messenger.model.My
 import com.nbc.messenger.model.ProfileImage
 import com.nbc.messenger.model.User
+import com.nbc.messenger.showNumberSelectionDialog
 
 private const val USER_MEMORY = "user"
 
-
 class DetailFragment : Fragment(), View.OnClickListener {
-    private var user: User? = null
 
+    private var user: User? = null
     private var _binding: FragmentDatailBinding? = null
     private val binding get() = _binding!!
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +30,7 @@ class DetailFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View? {
         _binding = FragmentDatailBinding.inflate(inflater, container, false)
         return binding.root
@@ -58,6 +56,11 @@ class DetailFragment : Fragment(), View.OnClickListener {
 
         binding.btnDetailCall.setOnClickListener(this)
         binding.btnDetailMsg.setOnClickListener(this)
+        binding.llDetailNotification.setOnClickListener(this)
+        
+        binding.btnDetailBack.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
 
     }
 
@@ -77,8 +80,16 @@ class DetailFragment : Fragment(), View.OnClickListener {
             binding.btnDetailCall -> {
                 startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:${user?.phoneNumber}")))
             }
+
             binding.btnDetailMsg -> {
                 startActivity(Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:${user?.phoneNumber}")))
+            }
+
+            binding.llDetailNotification -> {
+                showNumberSelectionDialog(requireContext()) { number ->
+                    user?.let { context?.createNotificationChannel(it, number) }
+                    user?.let { DataSource.updateIsChecked(it, false) }
+                }
             }
         }
     }
@@ -87,4 +98,5 @@ class DetailFragment : Fragment(), View.OnClickListener {
         super.onDestroyView()
         _binding = null
     }
+
 }
