@@ -33,10 +33,12 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_brand">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_message" />
+                android:background="@drawable/shape"
+                android:backgroundTint="#FFE081"
+                android:src="@drawable/baseline_account_circle_24" />
 
             <EditText
                 android:id="@+id/et_name"
@@ -62,8 +64,8 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_brand">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/ic_call" />
 
@@ -91,10 +93,12 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_brand">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_email" />
+                android:background="@drawable/shape"
+                android:backgroundTint="#FF5151"
+                android:src="@drawable/baseline_email_24" />
 
             <EditText
                 android:id="@+id/et_email"
@@ -120,10 +124,12 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_brand">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_group" />
+                android:background="@drawable/shape"
+                android:backgroundTint="#4CAF50"
+                android:src="@drawable/baseline_groups_24" />
 
             <EditText
                 android:id="@+id/et_group"
